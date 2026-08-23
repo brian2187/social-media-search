@@ -1,5 +1,5 @@
-inbox/
-data/
+/inbox/
+/data/
 config.local.json
 __pycache__/
 *.pyc
