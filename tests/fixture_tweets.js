@@ -21,6 +21,7 @@ window.YTD.tweets.part0 = [
       "full_text" : "@example that path is a reply.",
       "lang" : "en",
       "in_reply_to_status_id_str" : "1001",
+      "in_reply_to_screen_name" : "example",
       "favorite_count" : "0",
       "retweet_count" : "0",
       "entities" : { "user_mentions" : [ { "screen_name" : "example" } ], "hashtags" : [], "urls" : [] }

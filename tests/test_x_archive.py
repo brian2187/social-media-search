@@ -23,6 +23,7 @@ def test_fixture_parses():
     b = by_id["1002"]
     assert b["post_kind"] == "reply"
     assert "reply" in b["categories"]
+    assert b["reply_to_handle"] == "example"
 
 
 def test_question_tag():

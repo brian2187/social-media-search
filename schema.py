@@ -23,6 +23,9 @@ FIELDS = (
     "hashtags",
     "source",
     "categories",
+    "topics",
+    "reply_to_handle",
+    "reply_to_name",
 )
 
 
@@ -33,6 +36,7 @@ def empty_post(**kwargs) -> dict:
     row["mentions"] = []
     row["hashtags"] = []
     row["categories"] = []
+    row["topics"] = []
     row["like_count"] = 0
     row["repost_count"] = 0
     row["reply_count"] = 0
@@ -40,5 +44,7 @@ def empty_post(**kwargs) -> dict:
     row["post_kind"] = "original"
     row["platform"] = ""
     row["text"] = ""
+    row["reply_to_handle"] = ""
+    row["reply_to_name"] = ""
     row.update(kwargs)
     return row

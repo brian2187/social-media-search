@@ -11,7 +11,7 @@ import re
 import zipfile
 from pathlib import Path
 
-from categorize import categorize
+from categorize import categorize, topics_for
 from schema import empty_post
 
 YTD_ASSIGN = re.compile(
@@ -59,6 +59,7 @@ def _from_tweet(obj: dict, handle: str = "") -> dict:
     mentions = [m.get("screen_name") for m in ents.get("user_mentions") or [] if m.get("screen_name")]
     hashtags = [h.get("text") for h in ents.get("hashtags") or [] if h.get("text")]
     reply = t.get("in_reply_to_status_id_str") or t.get("in_reply_to_status_id")
+    reply_handle = str(t.get("in_reply_to_screen_name") or "").lstrip("@")
     quote = None
     if t.get("is_quote_status"):
         quote = str(t.get("quoted_status_id_str") or t.get("quoted_status_id") or "") or None
@@ -95,9 +96,11 @@ def _from_tweet(obj: dict, handle: str = "") -> dict:
         urls=[u for u in urls if u],
         mentions=mentions,
         hashtags=hashtags,
+        reply_to_handle=reply_handle or (mentions[0] if reply and mentions else ""),
         source="x-archive",
     )
     post["categories"] = categorize(post)
+    post["topics"] = topics_for(post)
     return post
 
 
